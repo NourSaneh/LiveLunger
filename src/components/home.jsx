@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { slides, lungSlides } from '.';
-import logo from '../assets/logo.png';
 
 // Lung Comparison Slider Component
 const LungComparisonSlider = () => {
@@ -40,31 +40,36 @@ const LungComparisonSlider = () => {
   const isHealthyDominant = !isUnhealthyDominant;
 
   return (
-    <div className="flex flex-col items-center">
-      {/* Toggle Labels */}
-      <div className="flex bg-gray-200 rounded-full p-2 mb-6">
+    <div className="flex flex-col items-center relative left-10 pl-6">
+      
+      <div className="grid grid-cols-2 bg-gray-200 rounded-full p-2 mb-6 w-[22rem]">
         <span
-          className={`px-6 py-2 text-base font-semibold rounded-full shadow-sm transition-colors duration-200 ${
-            isHealthyDominant ? 'bg-white text-gray-800' : 'bg-transparent text-gray-600'
-          }`}
+          className={`flex items-center justify-center py-2 text-base rounded-full transition-all duration-200
+            ${isHealthyDominant
+              ? "bg-white text-gray-800 font-semibold shadow-sm"
+              : "bg-transparent text-gray-500 font-medium"
+            }`}
           aria-selected={isHealthyDominant}
         >
-          {healthyLung?.label || 'HEALTHY'}
+          {healthyLung?.label || "HEALTHY"}
         </span>
+
         <span
-          className={`px-6 py-2 text-base font-semibold rounded-full shadow-sm transition-colors duration-200 ${
-            isUnhealthyDominant ? 'bg-white text-gray-800' : 'bg-transparent text-gray-600'
-          }`}
+          className={`flex items-center justify-center py-2 text-base rounded-full transition-all duration-200
+            ${isUnhealthyDominant
+              ? "bg-white text-gray-800 font-semibold shadow-sm"
+              : "bg-transparent text-gray-500 font-medium"
+            }`}
           aria-selected={isUnhealthyDominant}
         >
-          {unhealthyLung?.label || 'UNHEALTHY'}
+          {unhealthyLung?.label || "UNHEALTHY"}
         </span>
       </div>
 
       {/* Slider Container */}
       <div
         ref={containerRef}
-        className="relative w-96 h-[28rem] sm:w-[28rem] sm:h-[32rem] md:w-[30rem] md:h-[36rem] lg:w-[34rem] lg:h-[40rem] rounded-2xl overflow-hidden cursor-ew-resize select-none shadow-2xl"
+        className="relative aspect-[4/5] w-[clamp(14rem,60vw,30rem)] rounded-2xl overflow-hidden cursor-ew-resize select-none shadow-2xl"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
@@ -82,7 +87,7 @@ const LungComparisonSlider = () => {
           />
         </div>
 
-        {/* Healthy Lung (Foreground - clipped) */}
+        {/* Healthy Lung (Foreground) */}
         <div
           className="absolute inset-0"
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
@@ -98,7 +103,7 @@ const LungComparisonSlider = () => {
         {/* Slider Handle */}
         <div
           className="absolute top-0 bottom-0 w-1 bg-white shadow-lg"
-          style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
+          style={{ left: `${sliderPosition}%`, transform: "translateX(-50%)" }}
         >
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center">
             <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,13 +127,13 @@ const StackedGallery = () => {
   const images = slides.slice(0, 3).map(slide => slide.image);
 
   const positions = [
-    { rotate: -6, translateX: -80, translateY: 10, zIndex: 1 },
+    { rotate: -6, translateX: -120, translateY: 10, zIndex: 1 },
     { rotate: 0, translateX: 0, translateY: 0, zIndex: 3 },
-    { rotate: 6, translateX: 80, translateY: 10, zIndex: 2 },
+    { rotate: 6, translateX: 120, translateY: 10, zIndex: 2 },
   ];
 
   return (
-    <div className="relative w-72 h-72">
+    <div className="relative w-96 h-96  left-10 pl-6">
       {images.map((image, index) => {
         const pos = positions[index];
         const isHovered = hoveredIndex === index;
@@ -145,7 +150,7 @@ const StackedGallery = () => {
                 scale(${isHovered ? 1.1 : 1})
               `,
               zIndex: isHovered ? 10 : pos.zIndex,
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              transition: 'all 0.18s cubic-bezier(0.4, 0, 0.2, 1)',
               boxShadow: isHovered 
                 ? '0 25px 50px -12px rgba(0, 0, 0, 0.4)' 
                 : '0 10px 30px -10px rgba(0, 0, 0, 0.3)',
@@ -168,57 +173,12 @@ const StackedGallery = () => {
 // Main Home Component
 const Home = () => {
   return (
-    <main 
+    <main  id="home"
       className="relative min-h-screen"
       style={{ 
         background: 'linear-gradient(to bottom, #F1F5F9 0%, #FFFFFF 60%)',
       }}
     >
-      {/* Navigation */}
-      <nav className="relative z-20 bg-white/80 backdrop-blur-sm shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex items-center gap-2">
-              <img src={logo} alt="LiveLunger Logo" className="h-10 w-10 object-contain" />
-              <span className="text-2xl font-bold text-red-600">LiveLunger</span>
-            </div>
-            
-            {/* Nav Links */}
-            <div className="hidden md:flex space-x-8">
-              <a href="#home" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Home
-              </a>
-              <a href="#mission" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Mission
-              </a>
-              <a href="#vision" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Vision
-              </a>
-              <a href="#impact" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Impact
-              </a>
-            </div>
-
-            {/* CTA Button */}
-            <div className="hidden md:block">
-              <button className="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition-colors shadow-md">
-                Get Started
-              </button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="md:hidden">
-              <button className="text-gray-700 hover:text-blue-600">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       {/* SVG Background */}
       <svg
         className="absolute top-0 left-0 w-full h-full z-0"
@@ -275,13 +235,12 @@ const Home = () => {
       </svg>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32 min-h-screen flex items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-16 min-h-screen flex items-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
           
           {/* Left Side - Text + Stacked Gallery */}
           <div className="flex flex-col items-center lg:items-start gap-10">
             <div className="text-center lg:text-left">
-              <p className="text-blue-600 font-bold tracking-wider uppercase text-base mb-3">LiveLunger</p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-gray-900 mb-6">
                 Breathe Free, Live Longer
               </h1>
@@ -295,13 +254,23 @@ const Home = () => {
               <StackedGallery />
             </div>
             
-            <p className="text-blue-600 font-semibold text-xl mt-6">
-              YOU CAN MAKE A HUGE DIFFERENCE
-            </p>
+ <div className="flex flex-col gap-0">
+  <p className="text-black-600 font-black text-xl pl-14" style={{ fontFamily: 'Poppins, sans-serif' }}>
+    YOU CAN MAKE A HUGE DIFFERENCE
+  </p>
+
+  <div className="w-full max-w-md pl-14" style={{ filter: 'brightness(0)' }}>
+    <DotLottieReact
+      src="https://lottie.host/005dd310-dc0d-40c2-b9a4-47c28d1b2aa5/ONFncIFBnn.lottie"
+      loop
+      autoplay
+    />
+  </div>
+</div>
           </div>
 
           {/* Right Side - Lung Comparison Slider */}
-          <div className="flex justify-center lg:justify-end lg:pr-8 xl:pr-12">
+          <div className="flex justify-center lg:justify-end lg:pr-8 xl:pr-12 mt-6 lg:-mt-20">
             <LungComparisonSlider />
           </div>
 
