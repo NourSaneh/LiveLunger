@@ -245,7 +245,7 @@ const Home = () => {
                 Breathe Free, Live Longer
               </h1>
               <p className="text-gray-600 text-lg sm:text-xl max-w-md mx-auto lg:mx-0 leading-relaxed">
-                Join our mission to create a smoke-free world and help people live healthier, longer lives.
+                Join our mission to create a smoke free world and help people live healthier, longer lives.
               </p>
             </div>
             
