@@ -116,8 +116,9 @@ export default function Navbar() {
         {isOpen && (
           <>
             {/* Clickable backdrop to close */}
-            <motion.button
-              className="fixed inset-0 bg-black/20 backdrop-blur-[1px] z-40 md:hidden"
+            <motion.div
+              className="fixed inset-0 bg-black/20 backdrop-blur-[1px] md:hidden"
+              style={{ zIndex: 40 }}
               onClick={closeMenu}
               aria-label="Close menu backdrop"
               initial={{ opacity: 0 }}
@@ -127,7 +128,8 @@ export default function Navbar() {
             />
 
             <motion.div 
-              className="absolute top-16 left-0 right-0 z-50 bg-white shadow-lg border-t border-gray-100 md:hidden"
+              className="fixed top-16 left-0 right-0 bg-white shadow-lg border-t border-gray-100 md:hidden"
+              style={{ zIndex: 50 }}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
