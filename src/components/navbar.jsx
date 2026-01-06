@@ -26,10 +26,17 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 relative">
           {/* Logo */}
-          <div className="flex items-center gap-2 flex-shrink-0">
+          <a 
+            href="#home" 
+            className="flex items-center gap-2 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
             <img src={logo} alt="LiveLunger Logo" className="h-12 w-12 object-contain" />
             <span className="text-3xl font-bold text-red-600 font-heading">LiveLunger</span>
-          </div>
+          </a>
           
           {/* Nav Links - Centered */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8 absolute left-1/2 transform -translate-x-1/2">
