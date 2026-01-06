@@ -63,11 +63,11 @@ const MissionSection = () => {
                 />
                 
                 {/* Text Overlay - Positioned in the bottom half of the circle */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pt-16">
-                  <h3 className={`text-base sm:text-lg md:text-xl lg:text-2xl font-bold font-heading ${mission.textColor}`}>
+                <div className="absolute inset-0 flex flex-col items-center justify-center px-4 sm:px-6 text-center">
+                  <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-heading ${mission.textColor} mb-2`}>
                     {mission.title}
                   </h3>
-                  <p className={`text-xs sm:text-xs md:text-sm lg:text-base ${mission.textColor} opacity-80 max-w-[75%] leading-snug mt-1 break-words`}>
+                  <p className={`text-sm sm:text-base md:text-lg lg:text-xl ${mission.textColor} opacity-80 max-w-[70%] leading-tight break-words`}>
                     {mission.description}
                   </p>
                 </div>
