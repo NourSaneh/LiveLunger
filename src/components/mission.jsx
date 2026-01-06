@@ -28,11 +28,11 @@ const MissionSection = () => {
   ];
 
   return (
-    <section id="mission" className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white">
+    <section id="mission" className="py-4 sm:py-6 md:py-8 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-6xl mx-auto">
         {/* Title */}
         <div className="text-center mb-10 sm:mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 font-heading">
             Our mission
           </h2>
         </div>
@@ -64,7 +64,7 @@ const MissionSection = () => {
                 
                 {/* Text Overlay - Positioned in the bottom half of the circle */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-                  <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold ${mission.textColor}`}>
+                  <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-heading ${mission.textColor}`}>
                     {mission.title}
                   </h3>
                   <p className={`text-sm sm:text-base md:text-lg lg:text-xl ${mission.textColor} opacity-80 max-w-[70%] leading-tight mt-2 break-words`}>

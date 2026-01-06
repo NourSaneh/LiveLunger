@@ -40,9 +40,9 @@ const LungComparisonSlider = () => {
   const isHealthyDominant = !isUnhealthyDominant;
 
   return (
-    <div className="flex flex-col items-center relative left-10 pl-6">
+    <div className="flex flex-col items-center relative w-full">
       
-      <div className="grid grid-cols-2 bg-gray-200 rounded-full p-2 mb-6 w-[22rem]">
+      <div className="grid grid-cols-2 bg-gray-200 rounded-full p-2 mb-6 w-full max-w-md sm:max-w-lg">
         <span
           className={`flex items-center justify-center py-2 text-base rounded-full transition-all duration-200
             ${isHealthyDominant
@@ -127,13 +127,13 @@ const StackedGallery = () => {
   const images = slides.slice(0, 3).map(slide => slide.image);
 
   const positions = [
-    { rotate: -6, translateX: -120, translateY: 10, zIndex: 1 },
+    { rotate: -5, translateX: -60, translateY: 10, zIndex: 1 },
     { rotate: 0, translateX: 0, translateY: 0, zIndex: 3 },
-    { rotate: 6, translateX: 120, translateY: 10, zIndex: 2 },
+    { rotate: 5, translateX: 60, translateY: 10, zIndex: 2 },
   ];
 
   return (
-    <div className="relative w-96 h-96  left-10 pl-6">
+    <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md h-[18rem] sm:h-80 md:h-96 flex justify-center">
       {images.map((image, index) => {
         const pos = positions[index];
         const isHovered = hoveredIndex === index;
@@ -250,23 +250,23 @@ const Home = () => {
             </div>
             
             {/* Stacked Gallery */}
-            <div className="mt-6">
+            <div className="mt-6 w-full flex justify-center lg:justify-start">
               <StackedGallery />
             </div>
             
- <div className="flex flex-col gap-0">
-  <p className="text-black-600 font-black text-xl pl-14" style={{ fontFamily: 'Poppins, sans-serif' }}>
-    YOU CAN MAKE A HUGE DIFFERENCE
-  </p>
+            <div className="flex flex-col gap-0 items-center lg:items-start mt-32">
+              <p className="text-black-600 font-black text-2xl text-center lg:text-left px-0 lg:pl-14 mb-[-60px] z-10 relative" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                YOU CAN MAKE A HUGE DIFFERENCE
+              </p>
 
-  <div className="w-full max-w-md pl-14" style={{ filter: 'brightness(0)' }}>
-    <DotLottieReact
-      src="https://lottie.host/005dd310-dc0d-40c2-b9a4-47c28d1b2aa5/ONFncIFBnn.lottie"
-      loop
-      autoplay
-    />
-  </div>
-</div>
+              <div className="w-full max-w-md px-0 lg:pl-14" style={{ filter: 'brightness(0)' }}>
+                <DotLottieReact
+                  src="https://lottie.host/005dd310-dc0d-40c2-b9a4-47c28d1b2aa5/ONFncIFBnn.lottie"
+                  loop
+                  autoplay
+                />
+              </div>
+            </div>
           </div>
 
           {/* Right Side - Lung Comparison Slider */}
