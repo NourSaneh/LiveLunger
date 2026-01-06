@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { slides, lungSlides } from '.';
@@ -212,6 +212,18 @@ const StackedGallery = () => {
 
 // Main Home Component
 const Home = () => {
+  const [isLargeScreen, setIsLargeScreen] = useState(true);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024); // lg breakpoint
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   return (
     <main  id="home"
       className="relative min-h-screen w-screen overflow-x-hidden scroll-mt-16"
@@ -274,17 +286,19 @@ const Home = () => {
             <div className="text-center lg:text-left w-full px-4 lg:px-0">
               <motion.h1 
                 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-gray-900 mb-6"
-                initial={{ opacity: 1, y: 0 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                initial={isLargeScreen ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+                whileInView={isLargeScreen ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={isLargeScreen ? { duration: 0.8, ease: "easeOut" } : { duration: 0 }}
               >
                 Breathe Free, Live Longer
               </motion.h1>
               <motion.p 
                 className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed"
-                initial={{ opacity: 1, y: 0 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                initial={isLargeScreen ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+                whileInView={isLargeScreen ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={isLargeScreen ? { duration: 0.8, delay: 0.2, ease: "easeOut" } : { duration: 0 }}
               >
                 Join our mission to create a smoke free world and help people live healthier, longer lives.
               </motion.p>
