@@ -13,6 +13,6 @@ This project focuses on:
 - Component-based architecture
 - Clear visual hierarchy and layout\
 
-  ## 💡 Technologies Used
+## 💡 Technologies Used
 
 React · Tailwind CSS · HTML · JavaScript · Vite
