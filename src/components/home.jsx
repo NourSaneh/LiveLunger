@@ -263,15 +263,6 @@ const Home = () => {
           <path d="M-40 450 C 190 390, 340 500, 560 450 C 780 400, 980 360, 1200 440 C 1320 490, 1410 470, 1480 430" opacity="0.40" />
           <path d="M-40 550 C 210 490, 360 610, 600 560 C 840 510, 1020 490, 1220 550 C 1340 590, 1410 580, 1480 540" opacity="0.30" />
         </g>
-        {/* Tiny particles */}
-        <g opacity="0.35">
-          <circle cx="220" cy="250" r="3" fill="#60A5FA" />
-          <circle cx="320" cy="280" r="2" fill="#3B82F6" />
-          <circle cx="980" cy="240" r="3" fill="#60A5FA" />
-          <circle cx="1120" cy="300" r="2" fill="#3B82F6" />
-          <circle cx="640" cy="700" r="3" fill="#2563EB" />
-          <circle cx="780" cy="750" r="2" fill="#60A5FA" />
-        </g>
       </svg>
 
       {/* Content */}
