@@ -22,9 +22,9 @@ export default function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav className="fixed top-0 w-screen overflow-x-hidden z-50 bg-white/80 backdrop-blur-sm shadow-sm">
+    <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-sm shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 relative">
           {/* Logo */}
           <div className="flex items-center gap-2 flex-shrink-0">
             <img src={logo} alt="LiveLunger Logo" className="h-12 w-12 object-contain" />

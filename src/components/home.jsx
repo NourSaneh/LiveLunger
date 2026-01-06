@@ -69,7 +69,7 @@ const LungComparisonSlider = () => {
       {/* Slider Container */}
       <div
         ref={containerRef}
-        className="relative aspect-[4/4] sm:aspect-[4/5] w-[clamp(10rem,50vw,30rem)] rounded-2xl overflow-hidden cursor-ew-resize select-none shadow-2xl"
+        className="relative aspect-[4/4] sm:aspect-[4/5] w-[clamp(8rem,45vw,30rem)] rounded-2xl overflow-hidden cursor-ew-resize select-none shadow-2xl"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
@@ -236,7 +236,7 @@ const Home = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-16 min-h-screen flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 lg:gap-16 items-center w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-12 lg:gap-16 items-center w-full">
           
           {/* Left Side - Text + Stacked Gallery */}
           <div className="flex flex-col items-center lg:items-start gap-10 w-full">
