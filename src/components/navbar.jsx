@@ -114,59 +114,57 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
-            className="md:hidden"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-          {/* Clickable backdrop to close */}
-          <button
-            className="fixed inset-0 bg-black/20 backdrop-blur-[1px] z-40"
-            onClick={closeMenu}
-            aria-label="Close menu backdrop"
-          />
+          <>
+            {/* Clickable backdrop to close */}
+            <motion.button
+              className="fixed inset-0 bg-black/20 backdrop-blur-[1px] z-40 md:hidden"
+              onClick={closeMenu}
+              aria-label="Close menu backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            />
 
-          <motion.div 
-            className="absolute top-16 inset-x-0 z-50 bg-white shadow-lg border-t border-gray-100"
-            initial={{ y: -20 }}
-            animate={{ y: 0 }}
-            exit={{ y: -20 }}
-          >
-            <div className="px-4 py-4 space-y-3">
-              {navLinks.map((link, index) => (
+            <motion.div 
+              className="absolute top-16 left-0 right-0 z-50 bg-white shadow-lg border-t border-gray-100 md:hidden"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="px-4 py-4 space-y-3">
+                {navLinks.map((link, index) => (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    onClick={closeMenu}
+                    className="block text-gray-800 hover:text-red-600 font-medium transition-colors py-2"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+
                 <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="block text-gray-800 hover:text-red-600 font-medium transition-colors"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ delay: index * 0.05 }}
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSejTGBQDO04bBAmzwbmu3R8OwleYYgTEKqLE_tAs3rjeY5aRw/viewform?pli=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center bg-red-600 text-white w-full px-5 py-2.5 rounded-full font-semibold hover:bg-red-700 transition-colors shadow-md text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 mt-4"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {link.label}
+                  Join Us
                 </motion.a>
-              ))}
-
-              <motion.a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSejTGBQDO04bBAmzwbmu3R8OwleYYgTEKqLE_tAs3rjeY5aRw/viewform?pli=1"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-center bg-red-600 text-white w-full px-5 py-2.5 rounded-full font-semibold hover:bg-red-700 transition-colors shadow-md text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ delay: 0.2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Join Us
-              </motion.a>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
+              </div>
+            </motion.div>
+          </>
+        )}
       </AnimatePresence>
     </motion.nav>
   );
