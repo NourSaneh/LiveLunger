@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { slides, lungSlides } from '.';
 
@@ -40,9 +41,19 @@ const LungComparisonSlider = () => {
   const isHealthyDominant = !isUnhealthyDominant;
 
   return (
-    <div className="flex flex-col items-center relative w-full px-4">
+    <motion.div 
+      className="flex flex-col items-center relative w-full px-4"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
       
-      <div className="grid grid-cols-2 bg-gray-200 rounded-full p-2 mb-6 w-full max-w-md sm:max-w-lg">
+      <motion.div 
+        className="grid grid-cols-2 bg-gray-200 rounded-full p-2 mb-6 w-full max-w-md sm:max-w-lg"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         <span
           className={`flex items-center justify-center py-2 text-base rounded-full transition-all duration-200
             ${isHealthyDominant
@@ -64,12 +75,16 @@ const LungComparisonSlider = () => {
         >
           {unhealthyLung?.label || "UNHEALTHY"}
         </span>
-      </div>
+      </motion.div>
 
       {/* Slider Container */}
-      <div
+      <motion.div
         ref={containerRef}
         className="relative aspect-[3/4] sm:aspect-[4/5] w-[clamp(12rem,60vw,30rem)] rounded-2xl overflow-hidden cursor-ew-resize select-none shadow-2xl"
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        whileHover={{ scale: 1.02 }}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
@@ -111,11 +126,18 @@ const LungComparisonSlider = () => {
             </svg>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Instruction */}
-      <p className="mt-4 text-base text-gray-500">Drag to compare</p>
-    </div>
+      <motion.p 
+        className="mt-4 text-base text-gray-500"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+      >
+        Drag to compare
+      </motion.p>
+    </motion.div>
   );
 };
 
@@ -139,21 +161,39 @@ const StackedGallery = () => {
         const isHovered = hoveredIndex === index;
         
         return (
-          <div
+          <motion.div
             key={index}
             className="absolute inset-0 rounded-xl shadow-xl cursor-pointer overflow-hidden border-4 border-white bg-gray-200"
-            style={{
-              transform: `
-                rotate(${pos.rotate}deg) 
-                translateX(${pos.translateX}px)
-                translateY(${isHovered ? -30 : pos.translateY}px)
-                scale(${isHovered ? 1.1 : 1})
-              `,
+            initial={{ 
+              opacity: 0, 
+              scale: 0.5, 
+              rotate: pos.rotate + 15,
+              x: pos.translateX,
+              y: pos.translateY 
+            }}
+            animate={{ 
+              opacity: 1, 
+              scale: isHovered ? 1.1 : 1,
+              rotate: pos.rotate,
+              x: pos.translateX,
+              y: isHovered ? -30 : pos.translateY,
               zIndex: isHovered ? 10 : pos.zIndex,
-              transition: 'all 0.18s cubic-bezier(0.4, 0, 0.2, 1)',
-              boxShadow: isHovered 
-                ? '0 25px 50px -12px rgba(0, 0, 0, 0.4)' 
-                : '0 10px 30px -10px rgba(0, 0, 0, 0.3)',
+            }}
+            transition={{ 
+              duration: 0.6, 
+              delay: index * 0.15, 
+              ease: "easeOut",
+              scale: { duration: 0.3 },
+              y: { duration: 0.3 }
+            }}
+            style={{
+              zIndex: isHovered ? 10 : pos.zIndex,
+            }}
+            whileHover={{
+              scale: 1.1,
+              y: -30,
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.4)',
+              transition: { duration: 0.3 }
             }}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
@@ -163,7 +203,7 @@ const StackedGallery = () => {
               alt={`Gallery ${index + 1}`}
               className="w-full h-full object-cover"
             />
-          </div>
+          </motion.div>
         );
       })}
     </div>
@@ -240,21 +280,46 @@ const Home = () => {
           
           {/* Left Side - Text + Stacked Gallery */}
           <div className="flex flex-col items-center lg:items-start gap-10 w-full">
-            <div className="text-center lg:text-left w-full px-4 lg:px-0">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-gray-900 mb-6">
+            <motion.div 
+              className="text-center lg:text-left w-full px-4 lg:px-0"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <motion.h1 
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-gray-900 mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
                 Breathe Free, Live Longer
-              </h1>
-              <p className="text-gray-600 text-lg sm:text-xl max-w-md mx-auto lg:mx-0 leading-relaxed">
+              </motion.h1>
+              <motion.p 
+                className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
                 Join our mission to create a smoke free world and help people live healthier, longer lives.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
             
             {/* Stacked Gallery */}
-            <div className="mt-6 w-full flex justify-center lg:justify-start">
+            <motion.div 
+              className="mt-6 w-full flex justify-center lg:justify-start"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.5 }}
+            >
               <StackedGallery />
-            </div>
+            </motion.div>
             
-            <div className="flex flex-col gap-0 items-center lg:items-start mt-32 w-full">
+            <motion.div 
+              className="flex flex-col gap-0 items-center lg:items-start mt-32 w-full"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.7 }}
+            >
               <p className="text-black-600 font-black text-2xl text-center lg:text-left px-4 lg:px-0 lg:pl-14 mb-[-60px] z-10 relative" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 YOU CAN MAKE A HUGE DIFFERENCE
               </p>
@@ -266,7 +331,7 @@ const Home = () => {
                   autoplay
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Right Side - Lung Comparison Slider */}

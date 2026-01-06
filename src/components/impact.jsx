@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 
 const AnimatedCounter = ({ end, duration = 2000, suffix = '+' }) => {
   const [count, setCount] = useState(0);
@@ -64,23 +65,48 @@ const ImpactSection = () => {
     <section id="impact" className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         {/* Title */}
-        <div className="text-center mb-8 sm:mb-10 md:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 font-heading">Our Impact</h2>
-          <div className="w-10 sm:w-12 h-1 bg-green-500 mx-auto rounded-full"></div>
-        </div>
+        <motion.div 
+          className="text-center mb-8 sm:mb-10 md:mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.h2 
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 font-heading"
+            initial={{ scale: 0.9 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            Our Impact
+          </motion.h2>
+          <motion.div 
+            className="w-10 sm:w-12 h-1 bg-green-500 mx-auto rounded-full"
+            initial={{ width: 0 }}
+            whileInView={{ width: 48 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          />
+        </motion.div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 md:gap-8 lg:gap-12 text-center">
           {stats.map((stat, index) => (
-            <div 
+            <motion.div 
               key={index} 
               className="p-4 sm:p-5 md:p-6 rounded-xl hover:bg-white hover:shadow-lg transition-all duration-300"
+              initial={{ opacity: 0, scale: 0.8, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+              whileHover={{ scale: 1.05, y: -5 }}
             >
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-green-500 mb-1 sm:mb-2">
                 <AnimatedCounter end={stat.value} duration={2000} />
               </div>
               <p className="text-gray-600 text-xs sm:text-sm md:text-base">{stat.label}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import missionGreen from '../assets/missions/Mission Green.png';
 import missionBrown from '../assets/missions/Mission Brown.png';
 import missionRed from '../assets/missions/Mission-red.png';
@@ -31,29 +32,47 @@ const MissionSection = () => {
     <section id="mission" className="py-4 sm:py-6 md:py-8 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-6xl mx-auto">
         {/* Title */}
-        <div className="text-center mb-10 sm:mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 font-heading">
+        <motion.div 
+          className="text-center mb-10 sm:mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.h2 
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 font-heading"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             Our mission
-          </h2>
-        </div>
+          </motion.h2>
+        </motion.div>
 
         {/* Mission Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 md:gap-8 lg:gap-12">
           {missions.map((mission, index) => (
-            <div
+            <motion.div
               key={index}
               className="flex flex-col items-center text-center group"
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
               {/* Icon Container with Text Inside */}
-              <div
+              <motion.div
                 className={`
                   relative
                   w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96
                   transition-all duration-300 ease-out
                   ${hoveredIndex === index ? 'scale-110 -translate-y-2' : 'scale-100'}
                 `}
+                whileHover={{ scale: 1.15, y: -10, rotate: hoveredIndex === index ? 5 : 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 {/* Background Image */}
                 <img
@@ -71,8 +90,8 @@ const MissionSection = () => {
                     {mission.description}
                   </p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
       </div>

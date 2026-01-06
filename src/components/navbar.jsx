@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo.png';
 
 export default function Navbar() {
@@ -22,46 +23,71 @@ export default function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-sm shadow-sm">
+    <motion.nav 
+      className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-sm shadow-sm"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 relative">
           {/* Logo */}
-          <a 
+          <motion.a 
             href="#home" 
             className="flex items-center gap-2 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
-            <img src={logo} alt="LiveLunger Logo" className="h-12 w-12 object-contain" />
+            <motion.img 
+              src={logo} 
+              alt="LiveLunger Logo" 
+              className="h-12 w-12 object-contain"
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.6 }}
+            />
             <span className="text-3xl font-bold text-red-600 font-heading">LiveLunger</span>
-          </a>
+          </motion.a>
           
           {/* Nav Links - Centered */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8 absolute left-1/2 transform -translate-x-1/2">
-            {navLinks.map((link) => (
-              <a
+            {navLinks.map((link, index) => (
+              <motion.a
                 key={link.href}
                 href={link.href}
                 className="text-gray-700 hover:text-red-600 font-medium transition-colors"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {link.label}
-              </a>
+              </motion.a>
             ))}
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
-            <a
+          <motion.div 
+            className="hidden md:block"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
+            <motion.a
               href="https://docs.google.com/forms/d/e/1FAIpQLSejTGBQDO04bBAmzwbmu3R8OwleYYgTEKqLE_tAs3rjeY5aRw/viewform?pli=1"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-red-600 text-white px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full font-semibold hover:bg-red-700 transition-colors shadow-md text-sm sm:text-base md:text-lg lg:text-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(220, 38, 38, 0.3)" }}
+              whileTap={{ scale: 0.95 }}
             >
               Join Us
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex-shrink-0">
@@ -86,8 +112,15 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            className="md:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
           {/* Clickable backdrop to close */}
           <button
             className="fixed inset-0 bg-black/20 backdrop-blur-[1px] z-40"
@@ -95,31 +128,46 @@ export default function Navbar() {
             aria-label="Close menu backdrop"
           />
 
-          <div className="absolute top-16 inset-x-0 z-50 bg-white shadow-lg border-t border-gray-100">
+          <motion.div 
+            className="absolute top-16 inset-x-0 z-50 bg-white shadow-lg border-t border-gray-100"
+            initial={{ y: -20 }}
+            animate={{ y: 0 }}
+            exit={{ y: -20 }}
+          >
             <div className="px-4 py-4 space-y-3">
-              {navLinks.map((link) => (
-                <a
+              {navLinks.map((link, index) => (
+                <motion.a
                   key={link.href}
                   href={link.href}
                   onClick={closeMenu}
                   className="block text-gray-800 hover:text-red-600 font-medium transition-colors"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ delay: index * 0.05 }}
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
 
-              <a
+              <motion.a
                 href="https://docs.google.com/forms/d/e/1FAIpQLSejTGBQDO04bBAmzwbmu3R8OwleYYgTEKqLE_tAs3rjeY5aRw/viewform?pli=1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-center bg-red-600 text-white w-full px-5 py-2.5 rounded-full font-semibold hover:bg-red-700 transition-colors shadow-md text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ delay: 0.2 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Join Us
-              </a>
+              </motion.a>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
-    </nav>
+      </AnimatePresence>
+    </motion.nav>
   );
 }
