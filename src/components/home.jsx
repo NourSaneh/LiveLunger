@@ -69,7 +69,7 @@ const LungComparisonSlider = () => {
       {/* Slider Container */}
       <div
         ref={containerRef}
-        className="relative aspect-[3/4] sm:aspect-[4/5] w-[clamp(8rem,45vw,30rem)] rounded-2xl overflow-hidden cursor-ew-resize select-none shadow-2xl"
+        className="relative aspect-[3/4] sm:aspect-[4/5] w-[clamp(12rem,60vw,30rem)] rounded-2xl overflow-hidden cursor-ew-resize select-none shadow-2xl"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
