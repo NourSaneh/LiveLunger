@@ -271,29 +271,24 @@ const Home = () => {
           
           {/* Left Side - Text + Stacked Gallery */}
           <div className="flex flex-col items-center lg:items-start gap-10 w-full">
-            <motion.div 
-              className="text-center lg:text-left w-full px-4 lg:px-0"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
+            <div className="text-center lg:text-left w-full px-4 lg:px-0">
               <motion.h1 
                 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-gray-900 mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                initial={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
               >
                 Breathe Free, Live Longer
               </motion.h1>
               <motion.p 
                 className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                initial={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
               >
                 Join our mission to create a smoke free world and help people live healthier, longer lives.
               </motion.p>
-            </motion.div>
+            </div>
             
             {/* Stacked Gallery */}
             <motion.div 
