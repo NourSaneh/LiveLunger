@@ -133,7 +133,7 @@ const StackedGallery = () => {
   ];
 
   return (
-    <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md h-[18rem] sm:h-80 md:h-96 flex justify-center">
+    <div className="relative w-full max-w-[14rem] sm:max-w-sm md:max-w-md h-[14rem] sm:h-80 md:h-96 flex justify-center">
       {images.map((image, index) => {
         const pos = positions[index];
         const isHovered = hoveredIndex === index;
@@ -236,7 +236,7 @@ const Home = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-16 min-h-screen flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 lg:gap-16 items-center w-full">
           
           {/* Left Side - Text + Stacked Gallery */}
           <div className="flex flex-col items-center lg:items-start gap-10 w-full">
