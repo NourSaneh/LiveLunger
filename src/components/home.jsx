@@ -40,7 +40,7 @@ const LungComparisonSlider = () => {
   const isHealthyDominant = !isUnhealthyDominant;
 
   return (
-    <div className="flex flex-col items-center relative w-full">
+    <div className="flex flex-col items-center relative w-full px-4">
       
       <div className="grid grid-cols-2 bg-gray-200 rounded-full p-2 mb-6 w-full max-w-md sm:max-w-lg">
         <span
@@ -174,7 +174,7 @@ const StackedGallery = () => {
 const Home = () => {
   return (
     <main  id="home"
-      className="relative min-h-screen"
+      className="relative min-h-screen w-screen overflow-x-hidden"
       style={{ 
         background: 'linear-gradient(to bottom, #F1F5F9 0%, #FFFFFF 60%)',
       }}
@@ -184,7 +184,7 @@ const Home = () => {
         className="absolute top-0 left-0 w-full h-full z-0"
         viewBox="0 0 1440 1000"
         xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
+        preserveAspectRatio="xMidYMid slice"
         aria-hidden="true"
       >
         <defs>
@@ -239,12 +239,12 @@ const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
           
           {/* Left Side - Text + Stacked Gallery */}
-          <div className="flex flex-col items-center lg:items-start gap-10">
-            <div className="text-center lg:text-left">
+          <div className="flex flex-col items-center lg:items-start gap-10 w-full">
+            <div className="text-center lg:text-left w-full px-4 lg:px-0">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-gray-900 mb-6">
                 Breathe Free, Live Longer
               </h1>
-              <p className="text-gray-600 text-lg sm:text-xl max-w-md leading-relaxed">
+              <p className="text-gray-600 text-lg sm:text-xl max-w-md mx-auto lg:mx-0 leading-relaxed">
                 Join our mission to create a smoke-free world and help people live healthier, longer lives.
               </p>
             </div>
@@ -254,12 +254,12 @@ const Home = () => {
               <StackedGallery />
             </div>
             
-            <div className="flex flex-col gap-0 items-center lg:items-start mt-32">
-              <p className="text-black-600 font-black text-2xl text-center lg:text-left px-0 lg:pl-14 mb-[-60px] z-10 relative" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <div className="flex flex-col gap-0 items-center lg:items-start mt-32 w-full">
+              <p className="text-black-600 font-black text-2xl text-center lg:text-left px-4 lg:px-0 lg:pl-14 mb-[-60px] z-10 relative" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 YOU CAN MAKE A HUGE DIFFERENCE
               </p>
 
-              <div className="w-full max-w-md px-0 lg:pl-14" style={{ filter: 'brightness(0)' }}>
+              <div className="w-full max-w-md px-4 lg:px-0 lg:pl-14 mx-auto lg:mx-0" style={{ filter: 'brightness(0)' }}>
                 <DotLottieReact
                   src="https://lottie.host/005dd310-dc0d-40c2-b9a4-47c28d1b2aa5/ONFncIFBnn.lottie"
                   loop
@@ -270,7 +270,7 @@ const Home = () => {
           </div>
 
           {/* Right Side - Lung Comparison Slider */}
-          <div className="flex justify-center lg:justify-end lg:pr-8 xl:pr-12 mt-6 lg:-mt-20">
+          <div className="flex justify-center lg:justify-end lg:pr-8 xl:pr-12 mt-6 lg:-mt-20 w-full">
             <LungComparisonSlider />
           </div>
 
