@@ -214,7 +214,7 @@ const StackedGallery = () => {
 const Home = () => {
   return (
     <main  id="home"
-      className="relative min-h-screen w-screen overflow-x-hidden"
+      className="relative min-h-screen w-screen overflow-x-hidden scroll-mt-16"
       style={{ 
         background: 'linear-gradient(to bottom, #F1F5F9 0%, #FFFFFF 60%)',
       }}

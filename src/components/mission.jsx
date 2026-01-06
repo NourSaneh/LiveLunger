@@ -29,7 +29,7 @@ const MissionSection = () => {
   ];
 
   return (
-    <section id="mission" className="py-4 sm:py-6 md:py-8 px-4 sm:px-6 lg:px-8 bg-white">
+    <section id="mission" className="py-4 sm:py-6 md:py-8 px-4 sm:px-6 lg:px-8 bg-white scroll-mt-16">
       <div className="max-w-6xl mx-auto">
         {/* Title */}
         <motion.div 

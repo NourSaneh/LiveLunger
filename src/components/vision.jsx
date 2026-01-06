@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const VisionSection = () => {
   return (
-    <section id="vision" className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section id="vision" className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 scroll-mt-16">
       <div className="max-w-4xl mx-auto">
         {/* Title */}
         <motion.div 
